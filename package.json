@@ -1,6 +1,6 @@
 {
   "name": "decimal-to-any",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Convert any decimal number to any other Numeral System. Support user's alphabet.",
   "main": "index.js",
   "scripts": {
@@ -10,7 +10,7 @@
     "type": "git",
     "url": "git+https://github.com/Connormiha/decimal-to-any.git"
   },
-  "author": "Mikhail Bodrov",
+  "author": "Mikhail Bodrov <connormiha1@gmail.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Connormiha/decimal-to-any/issues"

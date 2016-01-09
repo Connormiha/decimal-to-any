@@ -5,15 +5,19 @@
 
 Convert 256 decimal number to hex
 ```javascript
-var decToAny = require('decimal-to-any-convertor');
+var decToAny = require('decimal-to-any');
 decToAny(256, 16); // '100'
 ```
 
 Convert 100 decimal number to base 6 numeral system
 ```javascript
-var decToAny = require('decimal-to-any-convertor');
 decToAny(100, 6); // '244'
 ```
+Convert 200.1 decimal number to base 30 numeral system
+```javascript
+decToAny(200.1, 30); // '6k.3'
+```
+
 
 ## API
 ### decimal-to-any(number, numeralSystem[, options])
