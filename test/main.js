@@ -55,6 +55,13 @@ describe('decimal-to-any-convertor', function() {
         expect(convertor('  256.000512  ', 16)).to.equal('100.00218def416bdb1a');
     });
 
+    it('Should save minus symbol', function() {
+        expect(convertor(-1, 16)).to.equal('-1');
+        expect(convertor(' -1.0  ', 16)).to.equal('-1');
+        expect(convertor('  -256.000512  ', 16)).to.equal('-100.00218def416bdb1a');
+        expect(convertor(' -.1  ', 10)).to.equal('-0.1');
+    });
+
     it('Should use user\'s alphabet', function() {
         var alphabet = '!@#$%^&*()_+={}<>±';
         var options = {

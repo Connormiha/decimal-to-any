@@ -63,8 +63,6 @@ function convertorDiv(count, numericSystem, options) {
 */
 function decToAny(count, numericSystem, options) {
     options = options || {};
-    count = '' + count;
-    count = count.trim();
 
     options.alphabet = options.alphabet || ALPHABET;
 
@@ -72,11 +70,16 @@ function decToAny(count, numericSystem, options) {
         throw new ReferenceError('The alphabet has\'t all symbols for this numeral system');
     }
 
+    count = '' + count;
+    count = count.trim();
+
     var numbers = [];
     var integerPart;
-    integerPart = count.match(/^\d+/);
-    if (integerPart && integerPart[0]) {
-        integerPart = +integerPart[0];
+    var isMinus = count[0] === '-';
+
+    integerPart = count.match(/^-?(\d+)/);
+    if (integerPart && integerPart[1]) {
+        integerPart = +integerPart[1];
     } else {
         integerPart = 0;
     }
@@ -93,6 +96,10 @@ function decToAny(count, numericSystem, options) {
     }
 
     divPart = convertorDiv('0.' + divPart, numericSystem, options);
+
+    if (isMinus && +count != 0) {
+        integerPart = '-' + integerPart;
+    }
 
     if (divPart !== '') {
         return integerPart + '.' + divPart;
