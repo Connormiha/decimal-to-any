@@ -82,4 +82,10 @@ describe('decimal-to-any-convertor', function() {
     it('Should use precision', function() {
         expect(convertor('256.000512', 16, {precision: 3})).to.equal('100.002');
     });
+
+    it('Should throw error on alphabet chars overflow', function() {
+        expect(function() {
+            convertor(100, 100)
+        }).to.throw('The alphabet has\'t all symbols for this numeral system');
+    });
 });

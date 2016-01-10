@@ -1,6 +1,6 @@
 'use strict';
 
-var ALPHABET = '0123456789abcdefghijklmnopqrstuvw'.split('');
+var ALPHABET = '0123456789abcdefghijklmnopqrstuvwxyz'.split('');
 
 /**
 * @params {number|string} count
@@ -16,11 +16,10 @@ function convertorInteger(count, numericSystem, options) {
     }
 
     var result = [];
-    var alphabet = options.alphabet || ALPHABET;
     var char;
 
     do {
-        char = alphabet[count % numericSystem];
+        char = options.alphabet[count % numericSystem];
         result.push(char);
         count = parseInt(count / numericSystem);
     } while (count > 0);
@@ -42,13 +41,12 @@ function convertorDiv(count, numericSystem, options) {
     }
 
     var result = '';
-    var alphabet = options.alphabet || ALPHABET;
     var precision = options.precision || 60;
     var char;
 
     do {
         count *= numericSystem;
-        char = alphabet[parseInt(count)];
+        char = options.alphabet[parseInt(count)];
         result += char;
         count -= parseInt(count);
         precision && precision--;
@@ -67,6 +65,12 @@ function decToAny(count, numericSystem, options) {
     options = options || {};
     count = '' + count;
     count = count.trim();
+
+    options.alphabet = options.alphabet || ALPHABET;
+
+    if (options.alphabet.length < numericSystem) {
+        throw new ReferenceError('The alphabet has\'t all symbols for this numeral system');
+    }
 
     var numbers = [];
     var integerPart;
