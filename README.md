@@ -18,6 +18,11 @@ Convert 200.1 decimal number to base 30 numeral system
 decToAny(200.1, 30); // '6k.3'
 ```
 
+Convert 20 decimal number to binary
+```javascript
+decToAny(20, 2); // '1010'
+```
+
 
 ## API
 ### decimal-to-any(number, numeralSystem[, options])
@@ -48,6 +53,7 @@ var options = {
 decToAny(100, 16, options)// '&%'
 decToAny(200.002, 16, options)// '=(.!!($@#&})*({%<}'
 ```
+
 `Example for understanding.` DEC to DEC with user's alphabet. It's just example. It's better to use here  String.replace :)
 ```javascript
 var options = {

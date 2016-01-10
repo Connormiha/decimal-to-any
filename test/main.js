@@ -38,7 +38,7 @@ describe('decimal-to-any-convertor', function() {
         expect(convertor(100.001, 2)).to.equal('1100100.000000000100000110001001001101110100101111000110101001111111');
     });
 
-    it('Should convert decimal to 30 numeral system', function() {
+    it('Should convert decimal to base 30 numeral system', function() {
         expect(convertor(100, 30)).to.equal('3a');
         expect(convertor(1001.1001, 30)).to.equal('13b.302kttttttto4c9h2kn73fojttj1jh3gtelefem1q463km7t1q7f');
     });
@@ -92,7 +92,17 @@ describe('decimal-to-any-convertor', function() {
 
     it('Should throw error on alphabet chars overflow', function() {
         expect(function() {
-            convertor(100, 100)
+            convertor(100, 100);
         }).to.throw('The alphabet has\'t all symbols for this numeral system');
+    });
+
+    it('Should throw error on numeral system smaller than 2', function() {
+        expect(function() {
+            convertor(100, 1);
+        }).to.throw('Numeral system should be base 2 or higher');
+
+        expect(function() {
+            convertor(100, -1);
+        }).to.throw('Numeral system should be base 2 or higher');
     });
 });

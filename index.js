@@ -62,6 +62,12 @@ function convertorDiv(count, numericSystem, options) {
 * @return {String}
 */
 function decToAny(count, numericSystem, options) {
+    numericSystem = parseInt(numericSystem);
+
+    if (numericSystem < 2) {
+        throw new Error('Numeral system should be base 2 or higher');
+    }
+
     options = options || {};
 
     options.alphabet = options.alphabet || ALPHABET;
