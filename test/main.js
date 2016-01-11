@@ -36,6 +36,7 @@ describe('decimal-to-any-convertor', function() {
         expect(convertor(20.2, 2)).to.equal('10100.001100110011001100110011001100110011001100110011001101');
         expect(convertor(20.300, 2)).to.equal('10100.010011001100110011001100110011001100110011001100110011');
         expect(convertor(100.001, 2)).to.equal('1100100.000000000100000110001001001101110100101111000110101001111111');
+        expect(convertor(20.0, 2)).to.equal('10100');
     });
 
     it('Should convert decimal to base 30 numeral system', function() {

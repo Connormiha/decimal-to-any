@@ -20,7 +20,7 @@ decToAny(200.1, 30); // '6k.3'
 
 Convert 20 decimal number to binary
 ```javascript
-decToAny(20, 2); // '1010'
+decToAny(20, 2); // '10100'
 ```
 
 
