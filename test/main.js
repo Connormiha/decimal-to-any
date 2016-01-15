@@ -14,10 +14,10 @@ describe('decimal-to-any-convertor', function() {
     });
 
     it('Should convert float decimal to float hex', function() {
-        expect(convertor(0.1, 16)).to.equal('0.1999999999999a');
-        expect(convertor(.1, 16)).to.equal('0.1999999999999a');
+        expect(convertor(0.1, 16)).to.equal('0.19999999999999999999');
+        expect(convertor(.1, 16)).to.equal('0.19999999999999999999');
         expect(convertor(1.0, 16)).to.equal('1');
-        expect(convertor(256.000512, 16)).to.equal('100.00218def416bdb1a');
+        expect(convertor(256.000512, 16)).to.equal('100.00218def416bdb1a6d69');
     });
 
     it('Should convert decimal to octal', function() {
@@ -27,21 +27,25 @@ describe('decimal-to-any-convertor', function() {
     });
 
     it('Should convert float decimal to float octal', function() {
-        expect(convertor(20.2, 8)).to.equal('24.146314631463146315');
-        expect(convertor(20.300, 8)).to.equal('24.231463146314631463');
-        expect(convertor(100.001, 8)).to.equal('144.00040611156457065177');
+        expect(convertor(20.2, 8)).to.equal('24.14631463146314631463');
+        expect(convertor(20.300, 8)).to.equal('24.23146314631463146314');
+        expect(convertor(100.001, 8)).to.equal('144.00040611156457065176');
     });
 
     it('Should convert float decimal to float binary', function() {
-        expect(convertor(20.2, 2)).to.equal('10100.001100110011001100110011001100110011001100110011001101');
-        expect(convertor(20.300, 2)).to.equal('10100.010011001100110011001100110011001100110011001100110011');
-        expect(convertor(100.001, 2)).to.equal('1100100.000000000100000110001001001101110100101111000110101001111111');
+        expect(convertor(20.2, 2)).to.equal('10100.00110011001100110011');
+        expect(convertor(20.300, 2)).to.equal('10100.01001100110011001100');
+        expect(convertor(100.001, 2)).to.equal('1100100.00000000010000011000');
         expect(convertor(20.0, 2)).to.equal('10100');
     });
 
     it('Should convert decimal to base 30 numeral system', function() {
         expect(convertor(100, 30)).to.equal('3a');
-        expect(convertor(1001.1001, 30)).to.equal('13b.302kttttttto4c9h2kn73fojttj1jh3gtelefem1q463km7t1q7f');
+        expect(convertor(1001.1001, 30)).to.equal('13b.302ktttttttokh0t2cqd');
+    });
+
+    it('Should convert decimal to base 20 numeral system', function() {
+        expect(convertor(1.33, 20)).to.equal('1.6c2');
     });
 
     it('Should convert string', function() {
@@ -53,13 +57,13 @@ describe('decimal-to-any-convertor', function() {
     it('Should make auto trim', function() {
         expect(convertor('  0  ', 16)).to.equal('0');
         expect(convertor(' 1  ', 16)).to.equal('1');
-        expect(convertor('  256.000512  ', 16)).to.equal('100.00218def416bdb1a');
+        expect(convertor('  256.000512  ', 16)).to.equal('100.00218def416bdb1a6d69');
     });
 
     it('Should save minus symbol', function() {
         expect(convertor(-1, 16)).to.equal('-1');
         expect(convertor(' -1.0  ', 16)).to.equal('-1');
-        expect(convertor('  -256.000512  ', 16)).to.equal('-100.00218def416bdb1a');
+        expect(convertor('  -256.000512  ', 16)).to.equal('-100.00218def416bdb1a6d69');
         expect(convertor(' -.1  ', 10)).to.equal('-0.1');
     });
 
@@ -70,11 +74,11 @@ describe('decimal-to-any-convertor', function() {
         };
 
         expect(convertor(100, 16, options)).to.equal('&%');
-        expect(convertor(200.002, 16, options)).to.equal('=(.!!($@#&})*({%<}');
+        expect(convertor(200.002, 16, options)).to.equal('=(.!!($@#&})*({%<{<$+&%');
 
         options.alphabet = options.alphabet.split('');
         expect(convertor(100, 16, options)).to.equal('&%');
-        expect(convertor(200.002, 16, options)).to.equal('=(.!!($@#&})*({%<}');
+        expect(convertor(200.002, 16, options)).to.equal('=(.!!($@#&})*({%<{<$+&%');
     });
 
     it('Should convert dec to dec and use user\'s alphabet', function() {

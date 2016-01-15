@@ -1,4 +1,4 @@
-# decimal-to-any
+# decimal-to-any [![NPM version][npm-image]][npm-url]
 > Convert decimal number to any other numeral system. Support user's alphabet.
 
 ## Usage
@@ -67,6 +67,9 @@ decToAny(100, 10, options)// '1@@'
 
 ##### options.precision
 Type: `Number`  
-Default: 60  
+Default: 20  
 
 Quantity of numbers after point
+
+[npm-url]: https://npmjs.org/package/decimal-to-any
+[npm-image]: https://img.shields.io/npm/v/decimal-to-any.svg

@@ -44,17 +44,24 @@ function convertorDiv(count, numericSystem, options) {
     }
 
     var result = '';
-    var precision = options.precision || 60;
-    var char;
+    var precision = options.precision || 20;
     var alphabet = options.alphabet;
+    var char;
+    var zeroPos;
 
     do {
         count *= numericSystem;
         char = alphabet[parseInt(count)];
         result += char;
-        count -= parseInt(count);
+        count += '';
+        var zeroPos = count.indexOf('.');
+        if (zeroPos !== -1) {
+            count = +count.slice(zeroPos);
+        } else {
+            count = 0;
+        }
         precision && precision--;
-    } while (count != 0 && precision > 0);
+    } while (count !== 0 && precision > 0);
 
     return result;
 }
