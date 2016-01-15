@@ -1,6 +1,8 @@
 'use strict';
 
 var ALPHABET = '0123456789abcdefghijklmnopqrstuvwxyz'.split('');
+var regExpInteger = /^-?(\d+)/;
+var regExpDivPart = /\.(\d+)$/;
 
 /**
 * @params {number|string} count
@@ -15,16 +17,17 @@ function convertorInteger(count, numericSystem, options) {
         return '';
     }
 
-    var result = [];
+    var result = '';
     var char;
+    var alphabet = options.alphabet;
 
     do {
-        char = options.alphabet[count % numericSystem];
-        result.push(char);
+        char = alphabet[count % numericSystem];
+        result = char + result;
         count = parseInt(count / numericSystem);
     } while (count > 0);
 
-    return result.reverse().join('');
+    return result;
 }
 
 /**
@@ -43,10 +46,11 @@ function convertorDiv(count, numericSystem, options) {
     var result = '';
     var precision = options.precision || 60;
     var char;
+    var alphabet = options.alphabet;
 
     do {
         count *= numericSystem;
-        char = options.alphabet[parseInt(count)];
+        char = alphabet[parseInt(count)];
         result += char;
         count -= parseInt(count);
         precision && precision--;
@@ -83,7 +87,7 @@ function decToAny(count, numericSystem, options) {
     var integerPart;
     var isMinus = count[0] === '-';
 
-    integerPart = count.match(/^-?(\d+)/);
+    integerPart = count.match(regExpInteger);
     if (integerPart && integerPart[1]) {
         integerPart = +integerPart[1];
     } else {
@@ -94,7 +98,7 @@ function decToAny(count, numericSystem, options) {
 
     var divPart;
 
-    divPart = count.match(/\.(\d+)$/);
+    divPart = count.match(regExpDivPart);
     if (divPart && divPart[1]) {
         divPart = divPart[1];
     } else {
