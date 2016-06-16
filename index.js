@@ -1,8 +1,8 @@
 'use strict';
 
-var ALPHABET = '0123456789abcdefghijklmnopqrstuvwxyz'.split('');
-var regExpInteger = /^-?(\d+)/;
-var regExpDivPart = /\.(\d+)$/;
+const ALPHABET = '0123456789abcdefghijklmnopqrstuvwxyz'.split('');
+const regExpInteger = /^-?(\d+)/;
+const regExpDivPart = /\.(\d+)$/;
 
 /**
 * @params {number|string} count
@@ -17,9 +17,9 @@ function convertorInteger(count, numericSystem, options) {
         return '';
     }
 
-    var result = '';
-    var char;
-    var alphabet = options.alphabet;
+    let result = '';
+    let char;
+    let alphabet = options.alphabet;
 
     do {
         char = alphabet[count % numericSystem];
@@ -43,18 +43,18 @@ function convertorDiv(count, numericSystem, options) {
         return '';
     }
 
-    var result = '';
-    var precision = options.precision || 20;
-    var alphabet = options.alphabet;
-    var char;
-    var zeroPos;
+    let result = '';
+    let precision = options.precision || 20;
+    let alphabet = options.alphabet;
+    let char;
+    let zeroPos;
 
     do {
         count *= numericSystem;
         char = alphabet[parseInt(count)];
         result += char;
         count += '';
-        var zeroPos = count.indexOf('.');
+        zeroPos = count.indexOf('.');
         if (zeroPos !== -1) {
             count = +count.slice(zeroPos);
         } else {
@@ -87,12 +87,12 @@ function decToAny(count, numericSystem, options) {
         throw new ReferenceError('The alphabet has\'t all symbols for this numeral system');
     }
 
-    count = '' + count;
+    count = String(count);
     count = count.trim();
 
-    var numbers = [];
-    var integerPart;
-    var isMinus = count[0] === '-';
+    let numbers = [];
+    let integerPart;
+    let isMinus = count[0] === '-';
 
     integerPart = count.match(regExpInteger);
     if (integerPart && integerPart[1]) {
@@ -103,7 +103,7 @@ function decToAny(count, numericSystem, options) {
 
     integerPart = convertorInteger(integerPart, numericSystem, options) || '0';
 
-    var divPart;
+    let divPart;
 
     divPart = count.match(regExpDivPart);
     if (divPart && divPart[1]) {
@@ -112,14 +112,14 @@ function decToAny(count, numericSystem, options) {
         divPart = 0;
     }
 
-    divPart = convertorDiv('0.' + divPart, numericSystem, options);
+    divPart = convertorDiv(`0.${divPart}`, numericSystem, options);
 
     if (isMinus && +count != 0) {
-        integerPart = '-' + integerPart;
+        integerPart = `-${integerPart}`;
     }
 
     if (divPart !== '') {
-        return integerPart + '.' + divPart;
+        return integerPart + `.${divPart}`;
     }
 
     return integerPart;

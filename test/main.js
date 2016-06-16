@@ -1,10 +1,10 @@
 'use strict';
 
-var expect = require('chai').expect;
-var convertor = require('../');
+const expect = require('chai').expect;
+const convertor = require('../');
 
-describe('decimal-to-any-convertor', function() {
-    it('Should convert decimal to hex', function() {
+describe('decimal-to-any-convertor', () => {
+    it('should convert decimal to hex', () => {
         expect(convertor(0, 16)).to.equal('0');
         expect(convertor(1, 16)).to.equal('1');
         expect(convertor(10, 16)).to.equal('a');
@@ -13,63 +13,63 @@ describe('decimal-to-any-convertor', function() {
         expect(convertor(256, 16)).to.equal('100');
     });
 
-    it('Should convert float decimal to float hex', function() {
+    it('should convert float decimal to float hex', () => {
         expect(convertor(0.1, 16)).to.equal('0.19999999999999999999');
         expect(convertor(.1, 16)).to.equal('0.19999999999999999999');
         expect(convertor(1.0, 16)).to.equal('1');
         expect(convertor(256.000512, 16)).to.equal('100.00218def416bdb1a6d69');
     });
 
-    it('Should convert decimal to octal', function() {
+    it('should convert decimal to octal', () => {
         expect(convertor(8, 8)).to.equal('10');
         expect(convertor(1, 8)).to.equal('1');
         expect(convertor(300, 8)).to.equal('454');
     });
 
-    it('Should convert float decimal to float octal', function() {
+    it('should convert float decimal to float octal', () => {
         expect(convertor(20.2, 8)).to.equal('24.14631463146314631463');
         expect(convertor(20.300, 8)).to.equal('24.23146314631463146314');
         expect(convertor(100.001, 8)).to.equal('144.00040611156457065176');
     });
 
-    it('Should convert float decimal to float binary', function() {
+    it('should convert float decimal to float binary', () => {
         expect(convertor(20.2, 2)).to.equal('10100.00110011001100110011');
         expect(convertor(20.300, 2)).to.equal('10100.01001100110011001100');
         expect(convertor(100.001, 2)).to.equal('1100100.00000000010000011000');
         expect(convertor(20.0, 2)).to.equal('10100');
     });
 
-    it('Should convert decimal to base 30 numeral system', function() {
+    it('should convert decimal to base 30 numeral system', () => {
         expect(convertor(100, 30)).to.equal('3a');
         expect(convertor(1001.1001, 30)).to.equal('13b.302ktttttttokh0t2cqd');
     });
 
-    it('Should convert decimal to base 20 numeral system', function() {
+    it('should convert decimal to base 20 numeral system', () => {
         expect(convertor(1.33, 20)).to.equal('1.6c2');
     });
 
-    it('Should convert string', function() {
+    it('should convert string', () => {
         expect(convertor('0', 16)).to.equal('0');
         expect(convertor('1', 16)).to.equal('1');
         expect(convertor('10', 16)).to.equal('a');
     });
 
-    it('Should make auto trim', function() {
+    it('should make auto trim', () => {
         expect(convertor('  0  ', 16)).to.equal('0');
         expect(convertor(' 1  ', 16)).to.equal('1');
         expect(convertor('  256.000512  ', 16)).to.equal('100.00218def416bdb1a6d69');
     });
 
-    it('Should save minus symbol', function() {
+    it('should save minus symbol', () => {
         expect(convertor(-1, 16)).to.equal('-1');
         expect(convertor(' -1.0  ', 16)).to.equal('-1');
         expect(convertor('  -256.000512  ', 16)).to.equal('-100.00218def416bdb1a6d69');
         expect(convertor(' -.1  ', 10)).to.equal('-0.1');
     });
 
-    it('Should use user\'s alphabet', function() {
-        var alphabet = '!@#$%^&*()_+={}<>±';
-        var options = {
+    it('should use user\'s alphabet', () => {
+        let alphabet = '!@#$%^&*()_+={}<>±';
+        let options = {
             alphabet: alphabet
         };
 
@@ -81,9 +81,9 @@ describe('decimal-to-any-convertor', function() {
         expect(convertor(200.002, 16, options)).to.equal('=(.!!($@#&})*({%<{<$+&%');
     });
 
-    it('Should convert dec to dec and use user\'s alphabet', function() {
-        var alphabet = '@123456789';
-        var options = {
+    it('should convert dec to dec and use user\'s alphabet', () => {
+        let alphabet = '@123456789';
+        let options = {
             alphabet: alphabet
         };
 
@@ -91,22 +91,22 @@ describe('decimal-to-any-convertor', function() {
         expect(convertor(100.001, 10, options)).to.equal('1@@.@@1');
     });
 
-    it('Should use precision', function() {
+    it('should use precision', () => {
         expect(convertor('256.000512', 16, {precision: 3})).to.equal('100.002');
     });
 
-    it('Should throw error on alphabet chars overflow', function() {
-        expect(function() {
+    it('should throw error on alphabet chars overflow', () => {
+        expect(() => {
             convertor(100, 100);
         }).to.throw('The alphabet has\'t all symbols for this numeral system');
     });
 
-    it('Should throw error on numeral system smaller than 2', function() {
-        expect(function() {
+    it('should throw error on numeral system smaller than 2', () => {
+        expect(() => {
             convertor(100, 1);
         }).to.throw('Numeral system should be base 2 or higher');
 
-        expect(function() {
+        expect(() => {
             convertor(100, -1);
         }).to.throw('Numeral system should be base 2 or higher');
     });
