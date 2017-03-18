@@ -52,6 +52,9 @@ describe('decimal-to-any-convertor', () => {
         expect(convertor('0', 16)).to.equal('0');
         expect(convertor('1', 16)).to.equal('1');
         expect(convertor('10', 16)).to.equal('a');
+        expect(convertor('  10', 12)).to.equal('a');
+        expect(convertor('  10    ', 12)).to.equal('a');
+        expect(convertor('  10    a', 12)).to.equal('a');
     });
 
     it('should make auto trim', () => {

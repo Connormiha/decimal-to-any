@@ -1,16 +1,19 @@
 'use strict';
 
 const ALPHABET = '0123456789abcdefghijklmnopqrstuvwxyz'.split('');
-const regExpInteger = /^-?(\d+)/;
 const regExpDivPart = /\.(\d+)$/;
 
 /**
-* @params {number|string} count
+* @params {string} count
 * @params {number} numericSystem
 * @params {Object} [options]
 * @return {String}
 */
-function convertorInteger(count, numericSystem, options) {
+const convertorInteger = (count, numericSystem, {alphabet}) => {
+    if (alphabet === ALPHABET) {
+        return count.toString(numericSystem);
+    }
+
     count = +count;
 
     if (!count) {
@@ -19,7 +22,6 @@ function convertorInteger(count, numericSystem, options) {
 
     let result = '';
     let char;
-    let alphabet = options.alphabet;
 
     do {
         char = alphabet[count % numericSystem];
@@ -36,7 +38,7 @@ function convertorInteger(count, numericSystem, options) {
 * @params {Object} [options]
 * @return {String}
 */
-function convertorDiv(count, numericSystem, options) {
+const convertorDiv = (count, numericSystem, options) => {
     count = +count;
 
     if (!count) {
@@ -67,12 +69,12 @@ function convertorDiv(count, numericSystem, options) {
 }
 
 /**
-* @params {number} count
+* @params {number|string} count
 * @params {number} numericSystem
 * @params {Object} [options]
 * @return {String}
 */
-function decToAny(count, numericSystem, options) {
+const decToAny = (count, numericSystem, options) => {
     numericSystem = parseInt(numericSystem);
 
     if (numericSystem < 2) {
@@ -94,12 +96,7 @@ function decToAny(count, numericSystem, options) {
     let integerPart;
     let isMinus = count[0] === '-';
 
-    integerPart = count.match(regExpInteger);
-    if (integerPart && integerPart[1]) {
-        integerPart = +integerPart[1];
-    } else {
-        integerPart = 0;
-    }
+    integerPart = Math.abs(parseInt(count, 10)) || 0;
 
     integerPart = convertorInteger(integerPart, numericSystem, options) || '0';
 
