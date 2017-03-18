@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Convert any decimal number to any other Numeral System. Support user's alphabet.",
   "main": "index.js",
+  "types": "index.d.ts",
   "scripts": {
     "test": "mocha"
   },
@@ -20,7 +21,7 @@
   },
   "homepage": "https://github.com/Connormiha/decimal-to-any#readme",
   "devDependencies": {
-    "chai": "^3.4.1",
-    "mocha": "^2.3.4"
+    "chai": "3.5.0",
+    "mocha": "3.2.0"
   }
 }
