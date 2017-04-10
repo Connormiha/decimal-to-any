@@ -6,7 +6,7 @@
   "types": "index.d.ts",
   "scripts": {
     "test": "mocha",
-    "types": "flow check test/flow-types",
+    "types": "tsc -p test/ts-types && flow check test/flow-types",
     "preversion": "npm test && npm run types",
     "prepublish": "npm test && npm run types"
   },
