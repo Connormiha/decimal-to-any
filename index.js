@@ -6,7 +6,7 @@ const regExpDivPart = /\.(\d+)$/;
 /**
 * @params {string} count
 * @params {number} numericSystem
-* @params {Object} [options]
+* @params {Object} options
 * @return {String}
 */
 const convertorInteger = (count, numericSystem, options) => {
@@ -35,7 +35,7 @@ const convertorInteger = (count, numericSystem, options) => {
 /**
 * @params {string} count
 * @params {number} numericSystem
-* @params {Object} [options]
+* @params {Object} options
 * @return {String}
 */
 const convertorDiv = (count, numericSystem, options) => {

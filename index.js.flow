@@ -1,0 +1,7 @@
+// @flow
+declare type Options = {
+	alphabet?: Array<string> | string;
+	precision?: number;
+};
+
+declare module.exports: (count: number | string, numericSystem: number, options?: Options) => string;
