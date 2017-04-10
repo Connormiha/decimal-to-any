@@ -9,8 +9,8 @@ const regExpDivPart = /\.(\d+)$/;
 * @params {Object} [options]
 * @return {String}
 */
-const convertorInteger = (count, numericSystem, {alphabet}) => {
-    if (alphabet === ALPHABET) {
+const convertorInteger = (count, numericSystem, options) => {
+    if (options.alphabet === ALPHABET) {
         return count.toString(numericSystem);
     }
 
@@ -24,7 +24,7 @@ const convertorInteger = (count, numericSystem, {alphabet}) => {
     let char;
 
     do {
-        char = alphabet[count % numericSystem];
+        char = options.alphabet[count % numericSystem];
         result = char + result;
         count = parseInt(count / numericSystem);
     } while (count > 0);
