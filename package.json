@@ -7,8 +7,9 @@
   "scripts": {
     "test": "mocha",
     "types": "tsc -p test/ts-types && flow check test/flow-types",
-    "preversion": "npm test && npm run types",
-    "prepublish": "npm test && npm run types"
+    "lint": "eslint index.js",
+    "preversion": "npm run lint && npm test && npm run types",
+    "prepublish": "npm run lint && npm test && npm run types"
   },
   "engines": {
     "node": ">=4.2.0"
@@ -25,8 +26,9 @@
   "homepage": "https://github.com/Connormiha/decimal-to-any#readme",
   "devDependencies": {
     "chai": "3.5.0",
-    "flow-bin": "0.43.1",
-    "mocha": "3.2.0",
-    "typescript": "^2.2.2"
+    "eslint": "^3.19.0",
+    "flow-bin": "0.46.0",
+    "mocha": "3.4.1",
+    "typescript": "^2.3.2"
   }
 }

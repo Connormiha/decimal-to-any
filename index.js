@@ -30,7 +30,7 @@ const convertorInteger = (count, numericSystem, options) => {
     } while (count > 0);
 
     return result;
-}
+};
 
 /**
 * @params {string} count
@@ -47,7 +47,7 @@ const convertorDiv = (count, numericSystem, options) => {
 
     let result = '';
     let precision = options.precision || 20;
-    let alphabet = options.alphabet;
+    const alphabet = options.alphabet;
     let char;
     let zeroPos;
 
@@ -66,7 +66,7 @@ const convertorDiv = (count, numericSystem, options) => {
     } while (count !== 0 && precision > 0);
 
     return result;
-}
+};
 
 /**
 * @params {number|string} count
@@ -92,9 +92,8 @@ const decToAny = (count, numericSystem, options) => {
     count = String(count);
     count = count.trim();
 
-    let numbers = [];
     let integerPart;
-    let isMinus = count[0] === '-';
+    const isMinus = count[0] === '-';
 
     integerPart = Math.abs(parseInt(count, 10)) || 0;
 
@@ -120,6 +119,6 @@ const decToAny = (count, numericSystem, options) => {
     }
 
     return integerPart;
-}
+};
 
 module.exports = decToAny;
