@@ -1,7 +1,10 @@
+[![Build Status](https://travis-ci.org/Connormiha/decimal-to-any.svg?branch=master)](https://travis-ci.org/Connormiha/decimal-to-any)
+
 # decimal-to-any [![NPM version][npm-image]][npm-url]
 > Convert decimal number to any other numeral system. Support user's alphabet.
 
 ## Usage
+### Simple usage without alternative alphabet
 
 Convert 256 decimal number to hex
 ```javascript
