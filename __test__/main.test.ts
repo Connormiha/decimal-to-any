@@ -89,6 +89,8 @@ describe('decimal-to-any-convertor', () => {
             alphabet: alphabet
         };
 
+        expect(convertor(0, 10, options)).toEqual('@');
+        expect(convertor(0.01, 10, options)).toEqual('@.@1');
         expect(convertor(100, 10, options)).toEqual('1@@');
         expect(convertor(100.001, 10, options)).toEqual('1@@.@@1');
     });

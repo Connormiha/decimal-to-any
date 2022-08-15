@@ -97,7 +97,7 @@ const decToAny = (count, numericSystem, options) => {
 
     integerPart = Math.abs(parseInt(count, 10)) || 0;
 
-    integerPart = convertorInteger(integerPart, numericSystem, options) || '0';
+    integerPart = convertorInteger(integerPart, numericSystem, options) || options.alphabet[0];
 
     let divPart;
 
