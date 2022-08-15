@@ -1,6 +1,6 @@
 {
   "name": "decimal-to-any",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Convert any decimal number to any other Numeral System. Support user's alphabet.",
   "main": "index.js",
   "types": "index.d.ts",
